@@ -9,11 +9,13 @@
 #import "InAppPurchasing.h"
 #import <StoreKit/StoreKit.h>
 
-#if TARGET_IPHONE_SIMULATOR
-// 开发时模拟器使用的验证服务器地址
+#define isInSandbox   1     //如果是沙盒账号测试需要设置为1 release 版本为0
+
+#if isInSandbox
+// 沙盒账号模式下回执单的验证地址
 #define ITMS_VERIFY_RECEIPT_URL     @"https://sandbox.itunes.apple.com/verifyReceipt"
-#elif TARGET_OS_IPHONE
-//真机验证的服务器地址
+#else
+//生产环境下回执单的验证地址
 #define ITMS_VERIFY_RECEIPT_URL        @"https://buy.itunes.apple.com/verifyReceipt"
 #endif
 
